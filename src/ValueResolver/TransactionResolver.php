@@ -42,7 +42,7 @@ class TransactionResolver implements ValueResolverInterface
                 $errorMessages[] = $error->getPropertyPath() . ': ' . $error->getMessage();
             }
 
-            $errorMessage = implode("\n", $errorMessages);
+            $errorMessage = implode('|', $errorMessages);
 
             $this->logger->error($errorMessage, $data);
             throw new \Exception($errorMessage);

@@ -5,15 +5,12 @@ namespace App\Controller\Api;
 use App\Dto\TransactionDto;
 use App\Service\Factory\TransactionFactoryService;
 use App\Service\TransactionService;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/api')]
-class TransactionApiController extends AbstractController
+class TransactionApiController extends AbstractApiController
 {
     #[Route(path: '/transaction', methods: ['POST'])]
     public function importConferences(
@@ -21,16 +18,15 @@ class TransactionApiController extends AbstractController
         TransactionDto $transactionDto,
         TransactionFactoryService $transactionFactory,
         TransactionService $transactionService,
-        EntityManagerInterface $em,
     ): Response {
         $transaction = $transactionFactory->createTransactionFromDto($transactionDto);
-        $em->persist($transaction);
+        $this->em->persist($transaction);
 
         $transactionService->processTransaction($transaction);
 
-        $em->flush();
-        $em->clear();
+        $this->em->flush();
+        $this->em->clear();
 
-        return new JsonResponse('success');
+        return $this->successResponse();
     }
 }

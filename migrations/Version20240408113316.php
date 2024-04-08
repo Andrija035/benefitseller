@@ -30,6 +30,7 @@ final class Version20240408113316 extends AbstractMigration
         $this->addSql('CREATE TABLE package_merchant (package_id INT NOT NULL, merchant_id INT NOT NULL, INDEX IDX_902AB18FF44CABFF (package_id), INDEX IDX_902AB18F6796D554 (merchant_id), PRIMARY KEY(package_id, merchant_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE transactions (id INT AUTO_INCREMENT NOT NULL, card_id INT NOT NULL, merchant_id INT NOT NULL, amount INT NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_EAA81A4C4ACC9A20 (card_id), INDEX IDX_EAA81A4C6796D554 (merchant_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE users (id INT AUTO_INCREMENT NOT NULL, company_id INT NOT NULL, email VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, category SMALLINT DEFAULT 1 NOT NULL, created_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_1483A5E9E7927C74 (email), INDEX IDX_1483A5E9979B1AD6 (company_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE api_token (id INT AUTO_INCREMENT NOT NULL, authority VARCHAR(255) NOT NULL, token VARCHAR(255) NOT NULL, active TINYINT(1) DEFAULT 1 NOT NULL, created_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_7BA2F5EB4AF96AFC (authority), UNIQUE INDEX UNIQ_7BA2F5EB5F37A13B (token), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE benefits ADD CONSTRAINT FK_965A49FE6796D554 FOREIGN KEY (merchant_id) REFERENCES merchants (id)');
         $this->addSql('ALTER TABLE cards ADD CONSTRAINT FK_4C258FDA76ED395 FOREIGN KEY (user_id) REFERENCES users (id)');
         $this->addSql('ALTER TABLE merchants ADD CONSTRAINT FK_CC77B6C094F720F1 FOREIGN KEY (merchant_category_id) REFERENCES merchant_categories (id)');
@@ -67,5 +68,6 @@ final class Version20240408113316 extends AbstractMigration
         $this->addSql('DROP TABLE package_merchant');
         $this->addSql('DROP TABLE transactions');
         $this->addSql('DROP TABLE users');
+        $this->addSql('DROP TABLE api_token');
     }
 }

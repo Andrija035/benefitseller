@@ -21,6 +21,7 @@ final class Version20240408113327 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('INSERT IGNORE INTO api_token (authority, token) VALUES ("benefitseller", "testvalue")');
         $this->addSql('INSERT IGNORE INTO merchant_categories (category) VALUES 
                         (' . MerchantCategory::FOOD_AND_DRINKS->value . '), 
                         (' . MerchantCategory::RECREATION->value . '), 
