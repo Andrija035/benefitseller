@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
 class ExceptionListener
 {
-    public function onCoreException(ExceptionEvent $event)
+    public function onCoreException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
         $request = $event->getRequest();

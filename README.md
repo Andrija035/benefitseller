@@ -1,11 +1,13 @@
 # BenefitSeller API
 
-BenefitSeller API allows processing transactions made by BenefitSeller cardholders, tracks transaction information, and validates card funds.
+BenefitSeller API allows processing and validation of transactions made by BenefitSeller cardholders, tracks transaction information, validates card funds and more!
+It gives companies the ability to have multiple groups of employees placed in different categories, each with its own benefit package chosen by the company.
 
 ### Table of Contents
 
 - [Setup](#setup)
 - [Endpoint](#endpoint)
+- [Data Models](#data-models)
 
 ### Setup
 
@@ -42,12 +44,41 @@ BenefitSeller API allows processing transactions made by BenefitSeller cardholde
   
     **Request Header Parameters:**
 
-    - `authority` (required)
-    - `token` (required)
+    - `authority` (required): "_benefitseller_"
+    - `token` (required): "_testvalue_"
 
     **Request Body Parameters:**
 
-    - `cardNumber` (required, string): The 16-digit card number used for the transaction.
-    - `merchantId` (required, integer): The merchant ID used for the transaction.
+    - `cardNumber` (required, string): The 16-digit number provided by the card during transaction.
+    - `merchantId` (required, integer): The merchant ID provided by the merchant during transaction.
     - `amount` (required, integer): The amount of the transaction.
+
+### Data Models
+
+- **Company**:
+  Represents a company partnering with BenefitSeller.
+
+- **User**:
+  Represents a user of the BenefitSeller platform associated with a company.
+
+- **Transaction**:
+  Represents a transaction made by a cardholder.
+
+- **Merchant**:
+  Represents a merchant offering benefits and a separate discounts for platinum users.
+
+- **MerchantCategory**:
+  Represents a merchant category assigned to a merchant.
+
+- **Package**:
+  Represents a package chosen by a company for its employees, possibly containing chosen merchant categories for standard users and singled out merchants for platinum users.
+
+- **Card**:
+  Represents a benefit card assigned to a user.
+
+- **Benefit**:
+  Represents a benefit offered by a merchant.
+
+- **ApiToken**:
+  Represents a token used to confirm the validity of transaction.
 

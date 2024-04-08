@@ -10,7 +10,6 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class ApiTokenSubscriber implements EventSubscriberInterface
 {
-
     public function __construct(
         private readonly ApiService $apiService,
     ) {
