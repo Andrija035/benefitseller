@@ -24,7 +24,7 @@ class ApiToken
     private string $token,
 
     #[ORM\Column(name: 'active', type: 'boolean', options: ['default' => true])]
-    private bool $active,
+    private bool $active = true,
     ) {
     }
 
