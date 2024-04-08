@@ -21,12 +21,23 @@ It gives companies the ability to have multiple groups of employees placed in di
    Modify the _DATABASE_URL_ variable in the _.env_ file with your database credentials.
 
 
-3. **Run Database Migrations**
+3. **Create schema**
+
+    Run command:
+
+    ```php bin/console doctrine:database:create```
+
+
+4. **Run Database Migrations**
 
     Run command:
 
     ```php bin/console doctrine:migrations:migrate```
 
+
+5. **Import dummy data**
+
+    Import _Dump20240408.sql_ into database _benefitseller_
 ### Endpoint
 
 * **POST** /api/transaction:
@@ -36,7 +47,7 @@ It gives companies the ability to have multiple groups of employees placed in di
 
     ```json 
     {
-    "cardNumber": "1234567890123456",
+    "cardNumber": "4859123456719012",
     "merchantId": 1,
     "amount": 5000,
     }
@@ -82,3 +93,4 @@ It gives companies the ability to have multiple groups of employees placed in di
 - **ApiToken**:
   Represents a token used to confirm the validity of transaction.
 
+Be aware that there are also 2 pivoting tables "package_merchant" (used to link merchants with platinum package cardholders) and "package_merchant_category" (used to link merchant categories with standard package cardholders).

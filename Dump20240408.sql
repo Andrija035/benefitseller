@@ -1,0 +1,98 @@
+-- MySQL dump 10.13  Distrib 5.7.42, for Linux (x86_64)
+--
+-- Host: localhost    Database: benefitseller
+-- ------------------------------------------------------
+-- Server version	5.7.42-0ubuntu0.18.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `companies`
+--
+
+LOCK TABLES `companies` WRITE;
+/*!40000 ALTER TABLE `companies` DISABLE KEYS */;
+INSERT INTO `companies` VALUES (1,'Lorem','2024-04-08 20:53:09'),(2,'Ipsum','2024-04-08 20:53:09'),(3,'Dolor','2024-04-08 20:53:09');
+/*!40000 ALTER TABLE `companies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `merchants`
+--
+
+LOCK TABLES `merchants` WRITE;
+/*!40000 ALTER TABLE `merchants` DISABLE KEYS */;
+INSERT INTO `merchants` VALUES (1,1,'sapien',5,'2024-04-08 21:58:32'),(2,2,'orci',10,'2024-04-08 21:58:32'),(3,3,'Pellentesque',15,'2024-04-08 21:58:32'),(4,4,'varius',20,'2024-04-08 21:58:32'),(5,5,'pharetra',25,'2024-04-08 21:58:32'),(6,6,'posuere',30,'2024-04-08 21:58:32');
+/*!40000 ALTER TABLE `merchants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,1,'sit@amet.com','sit','consectetur',1,'2024-04-08 21:05:06'),(2,1,'adipiscing@amet.com','adipiscing','elit',1,'2024-04-08 21:05:06'),(3,1,'Morbi@amet.com','Morbi','vitae',2,'2024-04-08 21:05:06'),(4,1,'augue@amet.com','augue','massa',2,'2024-04-08 21:05:06'),(5,1,'viverra@amet.com','viverra','posuere',2,'2024-04-08 21:05:06'),(6,1,'mattis@amet.com','mattis','ac',3,'2024-04-08 21:05:06'),(7,1,'nibh@amet.com','nibh','Sed',3,'2024-04-08 21:05:06'),(8,2,'sit@consequat.com','semper','consectetur',1,'2024-04-08 21:05:06'),(9,2,'adipiscing@consequat.com','blandit','elit',3,'2024-04-08 21:05:06'),(10,2,'Morbi@consequat.com','luctus','vitae',2,'2024-04-08 21:05:06'),(11,2,'augue@consequat.com','pretium','massa',1,'2024-04-08 21:05:06'),(12,2,'viverra@consequat.com','Donec','posuere',2,'2024-04-08 21:05:06'),(13,2,'mattis@consequat.com','sodales','ac',3,'2024-04-08 21:05:06'),(14,2,'nibh@consequat.com','tortor','Sed',3,'2024-04-08 21:05:06'),(15,3,'sit@elementum.com','eros','consectetur',1,'2024-04-08 21:05:06'),(16,3,'adipiscing@elementum.com','gravida','elit',2,'2024-04-08 21:05:06'),(17,3,'Morbi@elementum.com','tempor','vitae',3,'2024-04-08 21:05:06'),(18,3,'augue@elementum.com','pretium','massa',1,'2024-04-08 21:05:06'),(19,3,'viverra@elementum.com','ultrices','posuere',2,'2024-04-08 21:05:06'),(20,3,'mattis@elementum.com','mattis','ac',3,'2024-04-08 21:05:06'),(21,3,'nibh@elementum.com','diam','Sed',1,'2024-04-08 21:05:06');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `packages`
+--
+
+LOCK TABLES `packages` WRITE;
+/*!40000 ALTER TABLE `packages` DISABLE KEYS */;
+INSERT INTO `packages` VALUES (1,1,1,'2024-04-08 22:00:50'),(2,1,2,'2024-04-08 22:00:50'),(3,1,3,'2024-04-08 22:00:50'),(4,2,1,'2024-04-08 22:00:51'),(5,2,2,'2024-04-08 22:00:51'),(6,2,3,'2024-04-08 22:00:51'),(7,3,1,'2024-04-08 22:00:51'),(8,3,2,'2024-04-08 22:00:51'),(9,3,3,'2024-04-08 22:00:51');
+/*!40000 ALTER TABLE `packages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cards`
+--
+
+LOCK TABLES `cards` WRITE;
+/*!40000 ALTER TABLE `cards` DISABLE KEYS */;
+INSERT INTO `cards` VALUES (22,1,'4859123456719012','2026-04-08 21:05:06','123','1234567891123456',50000,'2024-04-08 21:05:06'),(23,2,'5634123456729012','2026-04-08 21:05:06','321','9876543212987654',14000,'2024-04-08 21:05:06'),(24,3,'7890123456739012','2026-04-08 21:05:06','234','8765432103876543',29000,'2024-04-08 21:05:06'),(25,4,'1234567890143456','2026-04-08 21:05:06','543','6543210984654321',89000,'2024-04-08 21:05:06'),(26,5,'9876123456759012','2026-04-08 21:05:06','654','2345678905234567',12300,'2024-04-08 21:05:06'),(27,6,'4567123456769012','2026-04-08 21:05:06','234','3456789016345678',65000,'2024-04-08 21:05:06'),(28,7,'2345123456779012','2026-04-08 21:05:06','543','4567890127456789',7600,'2024-04-08 21:05:06'),(29,8,'8765123456789012','2026-04-08 21:05:06','876','5678901238567890',59000,'2024-04-08 21:05:06'),(30,9,'3456123456799012','2026-04-08 21:05:06','678','6789012349678901',5900,'2024-04-08 21:05:06'),(31,10,'6543123456089012','2026-04-08 21:05:06','087','7890123406789012',63000,'2024-04-08 21:05:06'),(32,12,'9876123451789012','2026-04-08 21:05:06','678','8901234167890123',21000,'2024-04-08 21:05:06'),(33,13,'4561123452789012','2026-04-08 21:05:06','456','9012345278901234',72800,'2024-04-08 21:05:06'),(34,14,'8765123453789012','2026-04-08 21:05:06','275','0123456389012345',92100,'2024-04-08 21:05:06'),(35,15,'2345123454789012','2026-04-08 21:05:06','357','5432109476543210',2890,'2024-04-08 21:05:06'),(36,16,'5634123455789012','2026-04-08 21:05:06','437','4321098565432109',17890,'2024-04-08 21:05:06'),(37,17,'3456123456789012','2026-04-08 21:05:06','286','3210987654321098',43210,'2024-04-08 21:05:06'),(38,18,'7890123457789012','2026-04-08 21:05:06','098','2109876743210987',20000,'2024-04-08 21:05:06'),(39,19,'6543123458789012','2026-04-08 21:05:06','890','0987654821098765',10000,'2024-04-08 21:05:06'),(40,20,'4859123459789012','2026-04-08 21:05:06','780','9876543910987654',14000,'2024-04-08 21:05:06'),(41,21,'9876123450789012','2026-04-08 21:05:06','375','8765432009876543',300,'2024-04-08 21:05:06'),(42,11,'1234567810123456','2026-04-08 21:05:06','632','7654324098765432',800,'2024-04-08 21:05:06');
+/*!40000 ALTER TABLE `cards` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `package_merchant`
+--
+
+LOCK TABLES `package_merchant` WRITE;
+/*!40000 ALTER TABLE `package_merchant` DISABLE KEYS */;
+INSERT INTO `package_merchant` VALUES (3,2),(3,4),(3,6),(6,1),(6,4),(9,5);
+/*!40000 ALTER TABLE `package_merchant` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `package_merchant_category`
+--
+
+LOCK TABLES `package_merchant_category` WRITE;
+/*!40000 ALTER TABLE `package_merchant_category` DISABLE KEYS */;
+INSERT INTO `package_merchant_category` VALUES (1,1),(1,3),(1,6),(4,1),(4,2),(7,5);
+/*!40000 ALTER TABLE `package_merchant_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-04-08 22:24:12
