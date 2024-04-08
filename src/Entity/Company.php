@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Traits\Timestampable;
 use App\Traits\Uniqueable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,9 +11,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'companies')]
+#[ORM\HasLifecycleCallbacks]
 class Company
 {
     use Uniqueable;
+    use Timestampable;
 
     #[ORM\Column(name: 'firstname', type: 'string', length: 255, nullable: false)]
     #[Assert\NotBlank]

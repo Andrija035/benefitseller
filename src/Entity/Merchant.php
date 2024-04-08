@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Traits\Timestampable;
 use App\Traits\Uniqueable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,9 +11,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'merchants')]
+#[ORM\HasLifecycleCallbacks]
 class Merchant
 {
     use Uniqueable;
+    use Timestampable;
 
     #[ORM\Column(name: 'name', type: 'string', length: 255, nullable: false)]
     #[Assert\NotBlank]
@@ -28,6 +31,9 @@ class Merchant
 
     #[ORM\ManyToMany(targetEntity: Package::class, mappedBy: 'merchants')]
     private Collection $packages;
+
+    #[ORM\OneToMany(targetEntity: Transaction::class, mappedBy: 'merchant', cascade: ['persist'], orphanRemoval: true)]
+    private Collection $transactions;
 
     public function __construct(string $name, int $discount, MerchantCategory $merchantCategory)
     {
@@ -70,5 +76,15 @@ class Merchant
     public function getPackages(): Collection
     {
         return $this->packages;
+    }
+
+    public function getTransactions(): Collection
+    {
+        return $this->transactions;
+    }
+
+    public function removeTransaction(Transaction $transaction): void
+    {
+        $this->transactions->removeElement($transaction);
     }
 }

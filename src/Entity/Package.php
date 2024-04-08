@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Enum\UserCategory;
 use App\Repository\PackageRepository;
+use App\Traits\Timestampable;
 use App\Traits\Uniqueable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,11 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PackageRepository::class)]
 #[ORM\Table(name: 'packages')]
+#[ORM\HasLifecycleCallbacks]
 class Package
 {
     use Uniqueable;
+    use Timestampable;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'packages')]
+    #[ORM\JoinColumn(nullable: false)]
     private Company $company;
 
     #[ORM\Column(name: 'user_category', type: 'smallint', enumType: UserCategory::class)]
