@@ -25,8 +25,7 @@ class FundsServiceTest extends TestCase
     {
         $company = new Company('test');
         $user = new User('test@test.com', 'test', 'test', $company);
-        $card = new Card($user, '1234567890123456', new \DateTime(), '123', '4375368934', 5000);
-        $card->setFunds(1000);
+        $card = new Card($user, '1234567890123456', new \DateTime(), '123', '4375368934', 1000);
 
         $amountToDeduct = 500;
 
