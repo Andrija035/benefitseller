@@ -32,6 +32,9 @@ class Merchant
     #[ORM\ManyToMany(targetEntity: Package::class, mappedBy: 'merchants')]
     private Collection $packages;
 
+    #[ORM\OneToMany(targetEntity: Benefit::class, mappedBy: 'merchant', cascade: ['persist'], orphanRemoval: true)]
+    private Collection $benefits;
+
     #[ORM\OneToMany(targetEntity: Transaction::class, mappedBy: 'merchant', cascade: ['persist'], orphanRemoval: true)]
     private Collection $transactions;
 
@@ -41,6 +44,8 @@ class Merchant
         $this->setDiscount($discount);
         $this->setMerchantCategory($merchantCategory);
         $this->packages = new ArrayCollection();
+        $this->benefits = new ArrayCollection();
+        $this->transactions = new ArrayCollection();
     }
 
     public function getName(): string
@@ -86,5 +91,15 @@ class Merchant
     public function removeTransaction(Transaction $transaction): void
     {
         $this->transactions->removeElement($transaction);
+    }
+
+    public function getBenefits(): Collection
+    {
+        return $this->benefits;
+    }
+
+    public function removeBenefit(Benefit $benefit): void
+    {
+        $this->benefits->removeElement($benefit);
     }
 }

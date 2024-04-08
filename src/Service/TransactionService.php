@@ -3,83 +3,59 @@
 namespace App\Service;
 
 use App\Entity\Card;
-use App\Entity\Package;
+use App\Entity\Merchant;
 use App\Entity\Transaction;
-use Doctrine\ORM\EntityManagerInterface;
 
 class TransactionService
 {
     private const METHOD_SUFFIX = 'UserProcessing';
 
     public function __construct(
-        protected readonly EntityManagerInterface $em,
+        protected readonly PackageService $packageService,
+        protected readonly BenefitService $benefitService,
+        protected readonly FundsService $fundsService,
     ) {
     }
 
     public function processTransaction(Transaction $transaction): void
     {
-        $user = $transaction->getCard()->getUser();
-        $processingMethod = $user->getCategory()->label() . self::METHOD_SUFFIX;
-
-        $this->$processingMethod($transaction);
-    }
-
-    private function standardUserProcessing(Transaction $transaction): void
-    {
         $card = $transaction->getCard();
         $merchant = $transaction->getMerchant();
         $amount = $transaction->getAmount();
 
-        $package = $this->getUserPackage($card->getUser());
+        $processingMethod = $card->getUser()->getCategory()->label() . self::METHOD_SUFFIX;
+
+        $this->$processingMethod($card, $merchant, $amount);
+    }
+
+    private function standardUserProcessing(Card $card, Merchant $merchant, int $amount): void
+    {
+        $package = $this->packageService->getUserPackage($card->getUser());
         $merchantCategories = $package->getMerchantCategories();
 
         if ($merchantCategories->contains($merchant->getMerchantCategory())) {
-            // include benefits
+            $this->benefitService->includeBenefits($merchant);
         }
 
-        $this->calculateNewBalance($card, $amount);
+        $this->fundsService->calculateNewBalance($card, $amount);
     }
 
-    private function premiumUserProcessing(Transaction $transaction): void
+    private function premiumUserProcessing(Card $card, Merchant $merchant, int $amount): void
     {
-        $card = $transaction->getCard();
-        $amount = $transaction->getAmount();
-
-        // include benefits
-        $this->calculateNewBalance($card, $amount);
+        $this->benefitService->includeBenefits($merchant);
+        $this->fundsService->calculateNewBalance($card, $amount);
     }
 
-    private function platinumUserProcessing(Transaction $transaction): void
+    private function platinumUserProcessing(Card $card, Merchant $merchant, int $amount): void
     {
-        $card = $transaction->getCard();
-        $merchant = $transaction->getMerchant();
-        $amount = $transaction->getAmount();
-
-        $package = $this->getUserPackage($card->getUser());
+        $package = $this->packageService->getUserPackage($card->getUser());
         $merchants = $package->getMerchants();
 
         if ($merchants->contains($merchant)) {
-            $amount = $this->getDiscountedAmount($merchant->getDiscount(), $amount);
+            $amount = $this->fundsService->getDiscountedAmount($merchant->getDiscount(), $amount);
         }
 
-        // include benefits
-        $this->calculateNewBalance($card, $amount);
-    }
-
-    private function calculateNewBalance(Card $card, int $amount): void
-    {
-        $card->setFunds($card->getFunds() - $amount);
-        $this->em->persist($card);
-    }
-
-    private function getDiscountedAmount(int $discount, int $amount): int
-    {
-        $discount = $amount * ($discount / 100);
-        return $amount - $discount;
-    }
-
-    private function getUserPackage($user): Package
-    {
-        return $this->em->getRepository(Package::class)->getUserPackage($user);
+        $this->benefitService->includeBenefits($merchant);
+        $this->fundsService->calculateNewBalance($card, $amount);
     }
 }
