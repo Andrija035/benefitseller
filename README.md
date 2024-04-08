@@ -37,7 +37,9 @@ It gives companies the ability to have multiple groups of employees placed in di
 
 5. **Import dummy data**
 
-    Import _Dump20240408.sql_ into database _benefitseller_
+    Import _Dump.sql_ into database _benefitseller_.
+    
+Note that for testing purposes, you'll need to create another database _benefitseller_ and import _TestDump.sql_ into it.
 ### Endpoint
 
 * **POST** /api/transaction:
