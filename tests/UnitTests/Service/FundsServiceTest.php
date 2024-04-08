@@ -12,13 +12,13 @@ use PHPUnit\Framework\TestCase;
 class FundsServiceTest extends TestCase
 {
     private FundsService $fundsService;
-    private EntityManagerInterface $entityManager;
+    private EntityManagerInterface $em;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->entityManager = $this->createMock(EntityManagerInterface::class);
-        $this->fundsService = new FundsService($this->entityManager);
+        $this->em = $this->createMock(EntityManagerInterface::class);
+        $this->fundsService = new FundsService($this->em);
     }
 
     public function testCalculateNewBalance(): void
@@ -30,7 +30,7 @@ class FundsServiceTest extends TestCase
 
         $amountToDeduct = 500;
 
-        $this->entityManager->expects($this->once())
+        $this->em->expects($this->once())
             ->method('persist')
             ->with($card);
 
